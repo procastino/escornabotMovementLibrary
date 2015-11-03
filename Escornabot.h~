@@ -10,8 +10,6 @@ class Escornabot {
     Escornabot ();
     void anda(int pasos);
     void xira(int pasos);
-    void andaCm(int cm);
-    void xiraGraos(int graos);
     void para(int tempo);
     void pitaTest(int tempo);
     void motor_step(int8_t inc_left, int8_t inc_right);

@@ -105,7 +105,7 @@ void Escornabot::xira(int pasos){
 }
 
 void Escornabot::xiraGraos(int graos){
-  int pasos=graos*11.4;
+  int pasos=graos*1024/90;
   if (pasos>0){
     inc_motor_esq=-1;
     inc_motor_der=-1;
