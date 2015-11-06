@@ -16,6 +16,9 @@ const static uint8_t step_pattern[] =
 
 int8_t index_left, index_right;
 int8_t inc_motor_esq , inc_motor_der;
+int repite;
+int botonIr;
+
 
 Escornabot::Escornabot(){
 pinMode(STEPPERS_MOTOR_LEFT_IN1,OUTPUT);
@@ -26,9 +29,12 @@ pinMode(STEPPERS_MOTOR_RIGHT_IN1,OUTPUT);
 pinMode(STEPPERS_MOTOR_RIGHT_IN2,OUTPUT);
 pinMode(STEPPERS_MOTOR_RIGHT_IN3,OUTPUT);
 pinMode(STEPPERS_MOTOR_RIGHT_IN4,OUTPUT);
+pinMode(A4,INPUT_PULLUP);
 pinMode(10,OUTPUT);
 index_left=0;
 index_right=0;
+repite=1;
+botonIr=0;
 }
 
 void Escornabot::motor_step(int8_t inc_left, int8_t inc_right)
@@ -58,54 +64,63 @@ void Escornabot::motor_step(int8_t inc_left, int8_t inc_right)
   
 }
 void Escornabot::anda(int pasos){
-  if (pasos>0){
-    inc_motor_esq=-1;
-    inc_motor_der=1;
+  
+  if (repite==1 && botonIr==1){
+    if (pasos>0){
+      inc_motor_esq=-1;
+      inc_motor_der=1;
+    }
+    if (pasos<0){
+      pasos=abs(pasos);
+      inc_motor_esq=1;
+      inc_motor_der=-1;
+    }  
+    for(int contpasos=0; contpasos<pasos; contpasos++){
+       motor_step(inc_motor_esq,inc_motor_der);
+     }
   }
-  if (pasos<0){
-    pasos=abs(pasos);
-    inc_motor_esq=1;
-    inc_motor_der=-1;
-  }  
-  for(int contpasos=0; contpasos<pasos; contpasos++){
-     motor_step(inc_motor_esq,inc_motor_der);
-   }
 }
 
 void Escornabot::andaCm(int cm){
-  int pasos=cm*173.8;
-  if (pasos>0){
-    inc_motor_esq=-1;
-    inc_motor_der=1;
-  }
-  if (pasos<0){
-    pasos=abs(pasos);
-    inc_motor_esq=1;
-    inc_motor_der=-1;
-  }  
-  for(int contpasos=0; contpasos<pasos; contpasos++){
-     motor_step(inc_motor_esq,inc_motor_der);
+
+  if (repite==1 && botonIr==1){
+    int pasos=cm*173.8;
+    if (pasos>0){
+      inc_motor_esq=-1;
+      inc_motor_der=1;
+    }
+    if (pasos<0){
+      pasos=abs(pasos);
+      inc_motor_esq=1;
+      inc_motor_der=-1;
+    }  
+    for(int contpasos=0; contpasos<pasos; contpasos++){
+       motor_step(inc_motor_esq,inc_motor_der);
+     }
    }
 }
 
 void Escornabot::xira(int pasos){
   
-  if (pasos>0){
-    inc_motor_esq=-1;
-    inc_motor_der=-1;
+  if (repite==1 && botonIr==1){
+    if (pasos>0){
+      inc_motor_esq=-1;
+      inc_motor_der=-1;
+    }
+    if (pasos<0){
+      pasos=abs(pasos);
+      inc_motor_esq=1;
+      inc_motor_der=1;
+    }
+    for(int contpasos=0; contpasos<pasos; contpasos++){
+      motor_step(inc_motor_esq,inc_motor_der);
+    }  
   }
-  if (pasos<0){
-    pasos=abs(pasos);
-    inc_motor_esq=1;
-    inc_motor_der=1;
-  }
-  for(int contpasos=0; contpasos<pasos; contpasos++){
-    motor_step(inc_motor_esq,inc_motor_der);
-  }  
 }
 
 void Escornabot::xiraGraos(int graos){
-  int pasos=graos*11.4;
+if (repite==1 && botonIr==1){ 
+ int pasos=graos*11.4;
   if (pasos>0){
     inc_motor_esq=-1;
     inc_motor_der=-1;
@@ -118,17 +133,35 @@ void Escornabot::xiraGraos(int graos){
   for(int contpasos=0; contpasos<pasos; contpasos++){
     motor_step(inc_motor_esq,inc_motor_der);
   }  
+  }
 }
 
 void Escornabot::para(int tempo){
-  delay(tempo);
+  if (repite==1 && botonIr==1){
+    delay(tempo);
+  }
 }
 
-void Escornabot::pitaTest(int tempo) {
+void Escornabot::pita(int tempo) {
+   if (repite==1 && botonIr==1){
    digitalWrite(10,HIGH);
    delay(tempo);
    digitalWrite(10,LOW);
-   delay(tempo*200);
+  }
+   }
+
+void Escornabot::nonRepetir() {
+  repite=0;
+}
+
+void Escornabot::siBotonIr() {
+  if (analogRead(A4)<700){
+    botonIr=1;
+    delay(500);
+  }
+  else {
+  botonIr=0;
+  }
 }
 
 
