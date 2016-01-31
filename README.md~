@@ -1,5 +1,5 @@
 # escornabotMovementLibrary
-Attempt to create a library for controlling escornabot with simple commands. It aims to be an educational tool for introducing programming to kids 8-14 years, so simplicity is fundamental. In Placidus version with a marker on its central hole, it could be used for drawing on the floor.
+Attempt to create a library for controlling escornabot with simple commands. It aims to be an educational tool for introducing programming to kids 8-14 years, so simplicity is fundamental.
 ## List of commands:
 ### anda(steps)
 Makes escornabot move that amount of steps.Negative steps give backward movements
@@ -18,10 +18,11 @@ Following orders will execute ONCE if "go" button is pressed.
 ### nonRepetir()
 Not ready yet, it would be for something like not repeating the program, but it fights with siBotonIr(). I have doubts here and a huge lack of knowledge 
 ## List of possible features
-### Choose between loops and lineal
-For the very beginner, maybe it's better to have a lineal program that doesn't execute infinitely. For more advanced users, using loops could be necessary. It would be good to make both behaviours available in a simple way.
-### Sensors
-With a very simple sensor (light sensor, endstop switch...) , it would be possible to program the escornabot to interact with its environment.
-### Speeds
-Making wheels turn at different speeds, it could be possible to create new activities.
+### Start movement on button press
+Use a button on the keypad to start the program that is loaded, instead of doing it right after upload.
+Could be something like leBotons() e unha variable como "pulsadoGo".
+### Move in different units
+Make functions to move distance units or turn degrees instead of steps.
+### Do not use loops
+For the very beginner, maybe it's better to have a lineal program that doesn't execute infinitely. Look for the best way to implement this, though I know it may be working against Arduino nature.
 
