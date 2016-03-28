@@ -3,11 +3,11 @@
 Escornabot centola;
 
 void setup(){
- 
-  
+
+
 }
 
 void loop()
 {
-  
+  // Escribimos o noso código entre estas dúas chaves
   }
