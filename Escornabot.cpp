@@ -18,6 +18,8 @@ int8_t index_left, index_right;
 int8_t inc_motor_esq , inc_motor_der;
 int repite;
 int botonIr;
+int minIr =300;
+int maxIr= 600;
 
 
 Escornabot::Escornabot(){
@@ -155,7 +157,7 @@ void Escornabot::nonRepetir() {
 }
 
 void Escornabot::siBotonIr() {
-  if (analogRead(A4)<700){
+   if ((analogRead(A4)<maxIr) && (analogRead(A4)>minIr)){
     botonIr=1;
     delay(500);
   }
