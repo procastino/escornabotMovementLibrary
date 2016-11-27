@@ -14,7 +14,7 @@ Stops moving for given time.
 ### pita(time)
 Buzzer sounds for given time.
 ### siBotonIr()
-Following orders will execute ONCE if "go" button is pressed.
+Following orders will execute ONCE if "go" button is pressed. This button value must be defined in Escornabot.cpp file to work properly.
 ### nonRepetir()
 Not ready yet, it would be for something like not repeating the program, but it fights with siBotonIr(). I have doubts here and a huge lack of knowledge 
 ## List of possible features
